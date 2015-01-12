@@ -1,0 +1,16 @@
+[
+{
+  "modid": "itsrainingfood",
+  "name": "It's Raining Food",
+  "description": "...Hallelujah, It's Raining Food. Raining Food!",
+  "version": "${version}",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["insaneau"],
+  "credits": "BaconDonut, SiylissTV, Wyld",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
