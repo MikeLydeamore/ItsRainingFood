@@ -23,6 +23,8 @@ public class ItsRainingFood {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		FMLCommonHandler.instance().bus().register(new FoodEventHandler());
+		
+		Config.doConfig(event.getSuggestedConfigurationFile());
 	}
 	
 	@Mod.EventHandler

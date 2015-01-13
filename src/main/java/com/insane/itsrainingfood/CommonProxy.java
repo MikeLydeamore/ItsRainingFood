@@ -9,5 +9,10 @@ public class CommonProxy {
 	{
 		
 	}
+	
+	public boolean shouldPlaySound()
+	{
+		return false;
+	}
 
 }

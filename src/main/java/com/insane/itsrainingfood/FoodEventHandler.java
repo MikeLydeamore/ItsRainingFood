@@ -3,7 +3,6 @@ package com.insane.itsrainingfood;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import cpw.mods.fml.relauncher.Side;
 
 public class FoodEventHandler {
 	public static int ticksSinceLast = 0;
@@ -17,12 +16,14 @@ public class FoodEventHandler {
 			{
 				event.player.getFoodStats().addStats(1, 1.0f);
 				ticksSinceLast++;
-				event.player.worldObj.playSoundAtEntity(event.player, "itsrainingfood:omnomnom", 0.8f, 1.0f);
+				if (ItsRainingFood.proxy.shouldPlaySound())
+					event.player.worldObj.playSoundAtEntity(event.player, "itsrainingfood:omnomnom", 0.8f, 1.0f);
 			}
 			else
 			{
+				System.out.println("TICKS: "+Config.configTicks);
 				ticksSinceLast++;
-				ticksSinceLast = ticksSinceLast%160;
+				ticksSinceLast = ticksSinceLast%Config.configTicks;
 			}
 		}
 	}
