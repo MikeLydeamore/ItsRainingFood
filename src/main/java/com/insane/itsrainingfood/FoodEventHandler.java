@@ -21,7 +21,6 @@ public class FoodEventHandler {
 			}
 			else
 			{
-				System.out.println("TICKS: "+Config.configTicks);
 				ticksSinceLast++;
 				ticksSinceLast = ticksSinceLast%Config.configTicks;
 			}
