@@ -1,6 +1,7 @@
 package com.insane.itsrainingfood;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
@@ -12,7 +13,7 @@ public class FoodEventHandler {
 		if (event.player.worldObj.isRaining())
 		{
 			EntityPlayer player = event.player;
-			if (ticksSinceLast == 0 && player.rotationPitch < -65f && player.getFoodStats().needFood() && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
+			if (ticksSinceLast == 0 && player.rotationPitch < -65f && player.getFoodStats().needFood() && player.worldObj.canBlockSeeTheSky(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ)))
 			{
 				event.player.getFoodStats().addStats(1, 1.0f);
 				ticksSinceLast++;
