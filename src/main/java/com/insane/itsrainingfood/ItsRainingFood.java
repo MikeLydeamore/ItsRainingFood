@@ -8,7 +8,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid=ItsRainingFood.MODID, name="It's Raining Food")
+@Mod(modid=ItsRainingFood.MODID, name="It's Raining Food", version="1.0.1")
 public class ItsRainingFood {
 
 	public static final String MODID = "ItsRainingFood";
