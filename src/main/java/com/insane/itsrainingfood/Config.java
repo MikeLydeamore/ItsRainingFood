@@ -16,7 +16,7 @@ public class Config {
 		
 		config.load();
 		
-		configTicks = config.get(categoryGeneral, "ticksForFood", 160, "Number of ticks to restore food").getInt();
+		configTicks = config.getInt("ticksForFood", categoryGeneral, 160, 1, Integer.MAX_VALUE, "Number of ticks to restore food");
 		soundEnabled = config.get(categoryGeneral, "soundEnabled", true).getBoolean();
 		
 		if (config.hasChanged())
