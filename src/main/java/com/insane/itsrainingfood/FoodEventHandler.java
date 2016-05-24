@@ -14,7 +14,7 @@ public class FoodEventHandler {
 		int j = MathHelper.floor_double(player.posY);
 		int k = MathHelper.floor_double(player.posZ);
 		
-		if (player.isEntityAlive() && player.worldObj.isRaining() && player.worldObj.getBiomeGenForCoords(i, k).getFloatRainfall() > 0F)
+		if (player.isEntityAlive() && player.worldObj.isRaining() && player.worldObj.getBiomeGenForCoords(i, k).getIntRainfall() > 0)
 		{
 			if (player.ticksExisted%Config.configTicks == 0 && player.rotationPitch < -65f && player.getFoodStats().needFood() && player.worldObj.canBlockSeeTheSky(i, j, k))
 			{
