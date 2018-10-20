@@ -1,38 +1,52 @@
 buildscript {
     repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+//        maven {
+//            name = "sonatype"
+//            url = "https://oss.sonatype.org/content/repositories/snapshots/"}
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
-apply plugin: 'forge'
+plugins {
+    id 'org.ajoberstar.grgit' version '1.7.2'
+}
 
-version = "1.7.10-1.0.2"
-group= "com.insane.itsrainingfood" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "itsrainingfood"
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+final commitId
+
+if (hasProperty("grgit")) { //looking for valid git repo
+    commitId = "${grgit.head().abbreviatedId}"
+} else { //fallback to NOGIT
+    commitId = "NOGIT"
+}
+
+version = "${mc_version}-${mod_version}-${commitId}"
+group = "${package_group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "${mod_name}"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
 
 minecraft {
-    version = "1.7.10-10.13.2.1277"
-    runDir = "eclipse"
+    version = "${mc_version}-${forge_version}"
+    runDir = "run"
+    
+    mappings = project.mappings_version
 }
 
 dependencies {
-    
 
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -45,7 +59,7 @@ processResources
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else, thats not the mcmod.info
+    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }

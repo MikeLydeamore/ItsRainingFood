@@ -1,7 +1,3 @@
 {
-	"omnomnom":
-		{"category": "ambient",
-		"sounds": [{"name": "foodchomp",
-						"stream": false}]
-		}
+	"omnomnom": { "sounds": [{"name": "itsrainingfood:foodchomp","stream": false}] }
 }
